@@ -13,30 +13,28 @@ struct SafariToolbarExampleView: View {
     @State private var searchText: String = ""
     
     var body: some View {
-        TabView {
-            Tab("Requests", systemImage: "paperplane") {
-            }
-
-
-            Tab("Account", systemImage: "person.crop.circle.fill") {
-            }
-
-
-            TabSection("Messages") {
-                Tab("Received", systemImage: "tray.and.arrow.down.fill") {
-                }
-
-
-                Tab("Sent", systemImage: "tray.and.arrow.up.fill") {
-                }
-
-
-                Tab("Drafts", systemImage: "pencil") {
-                }
-            }
+        VStack(){
+            Text("Safari")
         }
-        .tabViewStyle(.sidebarAdaptable)
-        .tabBarMinimizeBehavior(.onScrollDown)
+        .toolbar {
+                       
+            ToolbarItemGroup(placement: .bottomBar) {
+                Button { } label: { Image(systemName: "chevron.left") }
+                Button { } label: { Image(systemName: "chevron.right") }
+            }
+            ToolbarSpacer(.fixed, placement: .bottomBar)
+
+            
+                            DefaultToolbarItem( kind: .search , placement: .bottomBar)
+            
+            ToolbarSpacer(.fixed, placement: .bottomBar)
+
+            ToolbarItemGroup(placement: .bottomBar) {                            
+                            Button { } label: { Image(systemName: "square.on.square") }
+                        }
+                    }
+        
+        .searchable(text: $searchText)
     }
 }
 
